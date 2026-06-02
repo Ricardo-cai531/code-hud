@@ -123,25 +123,19 @@ echo $OSTYPE
    If empty, the plugin is not installed. Go back to Step 0 to check for ghost installation or EXDEV issues. If Step 0 was clean, ask the user to install via `/plugin install code-hud` first.
 
 2. Get runtime absolute path:
-   - On `darwin` or `linux`, prefer bun for performance and fall back to node:
+   - On all platforms, prefer bun for running TypeScript directly (no build step needed):
      ```bash
      command -v bun 2>/dev/null || command -v node 2>/dev/null
      ```
-   - On `win32` + `bash`, require node. Do not fall back to bun on Windows:
-     ```bash
-     command -v node 2>/dev/null
-     ```
 
    If empty, stop setup and explain that the current shell cannot find the required runtime.
-   - On **Windows + Git Bash/MSYS2**, explicitly explain that the current Git Bash session could not find Node.js, even if Claude Code itself is installed.
    - If `winget` is available, recommend:
      ```bash
-     winget install OpenJS.NodeJS.LTS
+     winget install Oven-sh.Bun
      ```
-   - On Windows, ask the user to install Node.js LTS from https://nodejs.org/
-   - On macOS/Linux, ask the user to install one of these:
-     - Node.js LTS from https://nodejs.org/
-     - Bun from https://bun.sh/
+   - Otherwise, ask the user to install one of these:
+     - Bun from https://bun.sh/ (recommended - runs TypeScript directly, no build step)
+     - Node.js LTS from https://nodejs.org/ (requires `npm run build` first)
    - After installation, ask the user to restart their shell and re-run `/code-hud:setup`.
 
 3. Verify the runtime exists:
@@ -150,9 +144,15 @@ echo $OSTYPE
    ```
    If it doesn't exist, re-detect or ask user to verify their installation.
 
-4. Determine source file based on runtime:
-   - On `darwin` or `linux`, use `src/index.ts` when the runtime is bun. Otherwise use `dist/index.js`.
-   - On Windows, always use `dist/index.js`.
+4. If runtime is node (not bun), build the plugin first:
+   ```bash
+   cd {PLUGIN_DIR} && npm ci && npm run build
+   ```
+   This is needed because the dist/ directory is not included in the repository.
+
+5. Determine source file based on runtime:
+   - When the runtime is bun, use `src/index.ts` (no build needed).
+   - When the runtime is node, use `dist/index.js` (requires build in step 4).
 
 5. Generate command (quotes around runtime path handle spaces):
 
@@ -188,7 +188,7 @@ echo $OSTYPE
 
 Do not use PowerShell commands when the shell is bash. Claude Code invokes statusLine commands through bash, which will interpret PowerShell variables like `$env` and `$p` before PowerShell ever sees them.
 
-On Windows require `node` and always use `dist/index.js`.
+On Windows, prefer `bun` if available (runs TypeScript directly, no build needed). Fall back to `node` with `dist/index.js` (requires build step).
 
 **Important**: Do **not** reuse the macOS/Linux awk-based command on Windows + Git Bash. The `awk` fragment requires `'"'"'` quoting to nest single quotes inside `bash -c '...'`. After JSON encoding and decoding, this quoting breaks on Windows Git Bash, causing a silent syntax error that prevents the HUD process from starting (see [#326](https://github.com/jarrodwatts/code-hud/issues/326)).
 
