@@ -26,7 +26,7 @@
     "runtime": "Node.js 18.0.0"
   },
   "build": {
-    "buildCommand": "npm run build 2>&1",
+    "buildCommand": "git add -A && git commit -m \"fix: update setup to prefer bun for running TypeScript directly\n\n- All platforms now prefer bun (runs src/index.ts directly, no build needed)\n- Node.js falls back to dist/index.js with npm run build step\n- Windows Git Bash now also supports bun instead of requiring node\n- Fixes missing dist/ issue when installing plugin from git\" 2>&1",
     "testCommand": "npm test",
     "lintCommand": null,
     "devCommand": "npm run dev",
@@ -122,8 +122,8 @@
   "hotPaths": [
     {
       "path": "README.zh.md",
-      "accessCount": 14,
-      "lastAccessed": 1780385296566,
+      "accessCount": 15,
+      "lastAccessed": 1780389667383,
       "type": "file"
     },
     {
@@ -134,14 +134,14 @@
     },
     {
       "path": "README.md",
-      "accessCount": 12,
-      "lastAccessed": 1780385168298,
+      "accessCount": 13,
+      "lastAccessed": 1780389666181,
       "type": "file"
     },
     {
       "path": "",
-      "accessCount": 8,
-      "lastAccessed": 1780384693252,
+      "accessCount": 9,
+      "lastAccessed": 1780389657694,
       "type": "directory"
     },
     {
@@ -265,6 +265,18 @@
       "type": "file"
     },
     {
+      "path": ".cac-plugin\\plugin.json",
+      "accessCount": 2,
+      "lastAccessed": 1780389668624,
+      "type": "file"
+    },
+    {
+      "path": ".cac-plugin\\marketplace.json",
+      "accessCount": 2,
+      "lastAccessed": 1780389670126,
+      "type": "file"
+    },
+    {
       "path": "src\\render\\tools-line.ts",
       "accessCount": 1,
       "lastAccessed": 1780372892067,
@@ -304,18 +316,6 @@
       "path": "C:\\Users\\CXB\\.claude\\plans\\robust-stargazing-pie.md",
       "accessCount": 1,
       "lastAccessed": 1780384361532,
-      "type": "file"
-    },
-    {
-      "path": ".cac-plugin\\plugin.json",
-      "accessCount": 1,
-      "lastAccessed": 1780384423521,
-      "type": "file"
-    },
-    {
-      "path": ".cac-plugin\\marketplace.json",
-      "accessCount": 1,
-      "lastAccessed": 1780384439632,
       "type": "file"
     },
     {

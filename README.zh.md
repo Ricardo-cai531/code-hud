@@ -2,8 +2,8 @@
 
 一个 CodeAgent 插件，实时显示正在发生的事情——上下文使用率、活跃工具、运行中的 Agent 和待办进度。始终在你的输入下方可见。
 
-[![License](https://img.shields.io/github/license/Ricardo-cai531/claude-hud?v=2)](LICENSE)
-[![Stars](https://img.shields.io/github/stars/Ricardo-cai531/claude-hud)](https://github.com/Ricardo-cai531/claude-hud/stargazers)
+[![License](https://img.shields.io/github/license/Ricardo-cai531/code-hud?v=2)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/Ricardo-cai531/code-hud)](https://github.com/Ricardo-cai531/code-hud/stargazers)
 
 ![Code HUD in action](claude-hud-preview-5-2.png)
 
@@ -15,7 +15,7 @@
 
 **步骤 1：添加市场**
 ```
-/plugin marketplace add Ricardo-cai531/claude-hud
+/plugin marketplace add Ricardo-cai531/code-hud
 ```
 
 **步骤 2：安装插件**
@@ -367,7 +367,7 @@ CodeHUD 优先使用官方 statusline stdin 负载中的使用率数据。如果
 ## 开发
 
 ```bash
-git clone https://github.com/Ricardo-cai531/claude-hud
+git clone https://github.com/Ricardo-cai531/code-hud
 cd claude-hud
 npm ci && npm run build
 npm test
@@ -385,4 +385,4 @@ MIT — 详见 [LICENSE](LICENSE)
 
 ## Star 历史
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Ricardo-cai531/claude-hud&type=Date)](https://star-history.com/#Ricardo-cai531/claude-hud&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Ricardo-cai531/code-hud&type=Date)](https://star-history.com/#Ricardo-cai531/code-hud&Date)

@@ -2,8 +2,8 @@
 
 A CodeAgent plugin that shows what's happening — context usage, active tools, running agents, and todo progress. Always visible below your input.
 
-[![License](https://img.shields.io/github/license/Ricardo-cai531/claude-hud?v=2)](LICENSE)
-[![Stars](https://img.shields.io/github/stars/Ricardo-cai531/claude-hud)](https://github.com/Ricardo-cai531/claude-hud/stargazers)
+[![License](https://img.shields.io/github/license/Ricardo-cai531/code-hud?v=2)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/Ricardo-cai531/code-hud)](https://github.com/Ricardo-cai531/code-hud/stargazers)
 
 ![Code HUD in action](claude-hud-preview-5-2.png)
 
@@ -15,7 +15,7 @@ Inside a CodeAgent instance, run the following commands:
 
 **Step 1: Add the marketplace**
 ```
-/plugin marketplace add Ricardo-cai531/claude-hud
+/plugin marketplace add Ricardo-cai531/code-hud
 ```
 
 **Step 2: Install the plugin**
@@ -375,7 +375,7 @@ Example fallback snapshot:
 ## Development
 
 ```bash
-git clone https://github.com/Ricardo-cai531/claude-hud
+git clone https://github.com/Ricardo-cai531/code-hud
 cd claude-hud
 npm ci && npm run build
 npm test
@@ -393,4 +393,4 @@ MIT — see [LICENSE](LICENSE)
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Ricardo-cai531/claude-hud&type=Date)](https://star-history.com/#Ricardo-cai531/claude-hud&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Ricardo-cai531/code-hud&type=Date)](https://star-history.com/#Ricardo-cai531/code-hud&Date)

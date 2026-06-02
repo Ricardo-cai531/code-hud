@@ -16,8 +16,8 @@
       "description": "Configure HUD display options"
     }
   },
-  "homepage": "https://github.com/jarrodwatts/code-hud",
-  "repository": "https://github.com/jarrodwatts/code-hud",
+  "homepage": "https://github.com/Ricardo-cai531/code-hud",
+  "repository": "https://github.com/Ricardo-cai531/code-hud",
   "license": "MIT",
   "keywords": ["hud", "monitoring", "statusline", "context", "tools", "agents", "todos", "codeagent"]
 }
