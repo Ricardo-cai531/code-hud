@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as os from 'os';
 import { createHash } from 'node:crypto';
 import { createDebug } from './debug.js';
-import { getClaudeConfigDir, getClaudeConfigJsonPath, getHudPluginDir } from './claude-config-dir.js';
+import { getCacConfigDir, getCacConfigJsonPath, getHudPluginDir } from './cac-config-dir.js';
 
 const debug = createDebug('config');
 
@@ -293,7 +293,7 @@ function computeConfigCountsFresh(cwd?: string): ConfigCounts {
   let outputStyle: string | undefined;
 
   const homeDir = os.homedir();
-  const claudeDir = getClaudeConfigDir(homeDir);
+  const claudeDir = getCacConfigDir(homeDir);
 
   // Collect all MCP servers across scopes, then subtract disabled ones
   const userMcpServers = new Set<string>();
@@ -321,7 +321,7 @@ function computeConfigCountsFresh(cwd?: string): ConfigCounts {
   outputStyle = readStringSetting(userLocalSettings, 'outputStyle') ?? outputStyle;
 
   // {CLAUDE_CONFIG_DIR}.json (additional user-scope MCPs)
-  const userClaudeJson = getClaudeConfigJsonPath(homeDir);
+  const userClaudeJson = getCacConfigJsonPath(homeDir);
   for (const name of getMcpServerNames(userClaudeJson)) {
     userMcpServers.add(name);
   }
@@ -411,8 +411,8 @@ function computeConfigCountsFresh(cwd?: string): ConfigCounts {
 
 export async function countConfigs(cwd?: string): Promise<ConfigCounts> {
   const homeDir = os.homedir();
-  const claudeDir = getClaudeConfigDir(homeDir);
-  const claudeConfigJsonPath = getClaudeConfigJsonPath(homeDir);
+  const claudeDir = getCacConfigDir(homeDir);
+  const claudeConfigJsonPath = getCacConfigJsonPath(homeDir);
   const normalizedCwd = cwd ? path.resolve(cwd) : null;
 
   const staticSentinelPaths = buildSentinelPaths(claudeDir, claudeConfigJsonPath, normalizedCwd);

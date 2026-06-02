@@ -1,10 +1,10 @@
-# CLAUDE.md
+# CODEAGENT.md
 
-This file provides guidance to Claude Code when working with this repository.
+This file provides guidance to CodeAgent when working with this repository.
 
 ## Project Overview
 
-Claude HUD is a Claude Code plugin that displays a real-time multi-line statusline. It shows context health, tool activity, agent status, and todo progress.
+Code HUD is a CodeAgent plugin that displays a real-time multi-line statusline. It shows context health, tool activity, agent status, and todo progress.
 
 ## Build Commands
 
@@ -21,15 +21,15 @@ echo '{"model":{"display_name":"Opus"},"context_window":{"current_usage":{"input
 ### Data Flow
 
 ```
-Claude Code → stdin JSON → parse → render lines → stdout → Claude Code displays
-           ↘ transcript_path → parse JSONL → tools/agents/todos
+CodeAgent → stdin JSON → parse → render lines → stdout → CodeAgent displays
+        ↘ transcript_path → parse JSONL → tools/agents/todos
 ```
 
-**Key insight**: The statusline is invoked every ~300ms by Claude Code. Each invocation:
+**Key insight**: The statusline is invoked every ~300ms by CodeAgent. Each invocation:
 1. Receives JSON via stdin (model, context, tokens - native accurate data)
 2. Parses the transcript JSONL file for tools, agents, and todos
 3. Renders multi-line output to stdout
-4. Claude Code displays all lines
+4. CodeAgent displays all lines
 
 ### Data Sources
 
@@ -47,11 +47,11 @@ Claude Code → stdin JSON → parse → render lines → stdout → Claude Code
 - `Task` calls → agent info
 
 **From config files**:
-- MCP count from `~/.claude/settings.json` (mcpServers)
-- Hooks count from `~/.claude/settings.json` (hooks)
+- MCP count from `~/.cac/settings.json` (mcpServers)
+- Hooks count from `~/.cac/settings.json` (hooks)
 - Rules count from CLAUDE.md files
 
-**From Claude Code stdin rate limits**:
+**From CodeAgent stdin rate limits**:
 - `rate_limits.five_hour.used_percentage` - 5-hour subscriber usage percentage
 - `rate_limits.five_hour.resets_at` - 5-hour reset timestamp
 - `rate_limits.seven_day.used_percentage` - 7-day subscriber usage percentage
@@ -62,10 +62,11 @@ Claude Code → stdin JSON → parse → render lines → stdout → Claude Code
 ```
 src/
 ├── index.ts           # Entry point
-├── stdin.ts           # Parse Claude's JSON input
+├── stdin.ts           # Parse CodeAgent's JSON input
 ├── transcript.ts      # Parse transcript JSONL
 ├── config-reader.ts   # Read MCP/rules configs
 ├── config.ts          # Load/validate user config
+├── cac-config-dir.ts  # Resolve CodeAgent config directories
 ├── git.ts             # Git status (branch, dirty, ahead/behind)
 ├── types.ts           # TypeScript interfaces
 └── render/
@@ -106,9 +107,9 @@ Lines 1-2 always shown. Additional lines are opt-in via config:
 
 ## Plugin Configuration
 
-The plugin manifest is in `.claude-plugin/plugin.json` (metadata only - name, description, version, author).
+The plugin manifest is in `.cac-plugin/plugin.json` (metadata only - name, description, version, author).
 
-**StatusLine configuration** must be added to the user's `~/.claude/settings.json` via `/claude-hud:setup`.
+**StatusLine configuration** must be added to the user's `~/.cac/settings.json` via `/code-hud:setup`.
 
 The setup command adds an auto-updating command that finds the latest installed version at runtime.
 

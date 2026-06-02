@@ -1,0 +1,15 @@
+{
+  "name": "code-hud-marketplace",
+  "owner": {
+    "name": "Jarrod Watts",
+    "url": "https://github.com/jarrodwatts"
+  },
+  "plugins": [
+    {
+      "name": "code-hud",
+      "source": "./",
+      "description": "Real-time statusline HUD for CodeAgent",
+      "version": "0.1.0"
+    }
+  ]
+}

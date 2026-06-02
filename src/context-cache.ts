@@ -2,7 +2,7 @@ import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
 import { createHash } from "node:crypto";
-import { getHudPluginDir } from "./claude-config-dir.js";
+import { getHudPluginDir } from "./cac-config-dir.js";
 import type { StdinData } from "./types.js";
 
 const CACHE_DIRNAME = "context-cache";

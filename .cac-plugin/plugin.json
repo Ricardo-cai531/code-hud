@@ -1,0 +1,23 @@
+{
+  "name": "code-hud",
+  "version": "0.1.0",
+  "description": "Real-time statusline HUD for CodeAgent - context health, tool activity, agent tracking, and todo progress",
+  "author": {
+    "name": "Jarrod Watts",
+    "url": "https://github.com/jarrodwatts"
+  },
+  "commands": {
+    "setup": {
+      "source": "./commands/setup.md",
+      "description": "Configure code-hud as your statusline"
+    },
+    "configure": {
+      "source": "./commands/configure.md",
+      "description": "Configure HUD display options"
+    }
+  },
+  "homepage": "https://github.com/jarrodwatts/code-hud",
+  "repository": "https://github.com/jarrodwatts/code-hud",
+  "license": "MIT",
+  "keywords": ["hud", "monitoring", "statusline", "context", "tools", "agents", "todos", "codeagent"]
+}

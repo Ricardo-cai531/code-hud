@@ -3,7 +3,7 @@ import * as fs from 'node:fs';
 import * as os from 'node:os';
 import * as path from 'node:path';
 import { promisify } from 'node:util';
-import { getHudPluginDir } from './claude-config-dir.js';
+import { getHudPluginDir } from './cac-config-dir.js';
 const CACHE_FILENAME = '.claude-code-version-cache.json';
 const defaultExecFile = promisify(execFile);
 let execFileImpl = defaultExecFile;

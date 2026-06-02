@@ -3,9 +3,9 @@ description: Configure HUD display options (layout, language, presets, display e
 allowed-tools: Read, Write, AskUserQuestion
 ---
 
-# Configure Claude HUD
+# Configure Code HUD
 
-**FIRST**: Use the Read tool to load `~/.claude/plugins/claude-hud/config.json` if it exists.
+**FIRST**: Use the Read tool to load `~/.cac/plugins/code-hud/config.json` if it exists.
 
 Store current values and note whether config exists (determines which flow to use).
 
@@ -341,7 +341,7 @@ Context ████░░░░░ 45% │ Usage ██░░░░░░░░
 
 ## Write Configuration
 
-Write to `~/.claude/plugins/claude-hud/config.json`.
+Write to `~/.cac/plugins/code-hud/config.json`.
 
 Merge with existing config, preserving:
 - `pathLevels` (not in configure flow)

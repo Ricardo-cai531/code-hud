@@ -3,7 +3,7 @@ import * as os from 'node:os';
 import * as path from 'node:path';
 import * as readline from 'readline';
 import { createHash } from 'node:crypto';
-import { getHudPluginDir } from './claude-config-dir.js';
+import { getHudPluginDir } from './cac-config-dir.js';
 const TRANSCRIPT_CACHE_VERSION = 5;
 let createReadStreamImpl = fs.createReadStream;
 function normalizeTokenCount(value) {

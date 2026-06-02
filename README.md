@@ -1,21 +1,21 @@
-# Claude HUD
+# Code HUD
 
-A Claude Code plugin that shows what's happening — context usage, active tools, running agents, and todo progress. Always visible below your input.
+A CodeAgent plugin that shows what's happening — context usage, active tools, running agents, and todo progress. Always visible below your input.
 
-[![License](https://img.shields.io/github/license/jarrodwatts/claude-hud?v=2)](LICENSE)
-[![Stars](https://img.shields.io/github/stars/jarrodwatts/claude-hud)](https://github.com/jarrodwatts/claude-hud/stargazers)
+[![License](https://img.shields.io/github/license/Ricardo-cai531/claude-hud?v=2)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/Ricardo-cai531/claude-hud)](https://github.com/Ricardo-cai531/claude-hud/stargazers)
 
-![Claude HUD in action](claude-hud-preview-5-2.png)
+![Code HUD in action](claude-hud-preview-5-2.png)
 
 > 🌐 English | [中文文档](README.zh.md)
 
 ## Install
 
-Inside a Claude Code instance, run the following commands:
+Inside a CodeAgent instance, run the following commands:
 
 **Step 1: Add the marketplace**
 ```
-/plugin marketplace add jarrodwatts/claude-hud
+/plugin marketplace add Ricardo-cai531/claude-hud
 ```
 
 **Step 2: Install the plugin**
@@ -30,15 +30,15 @@ EXDEV: cross-device link not permitted
 
 **Fix**: Set TMPDIR before installing:
 ```bash
-mkdir -p ~/.cache/tmp && TMPDIR=~/.cache/tmp claude
+mkdir -p ~/.cache/tmp && TMPDIR=~/.cache/tmp codeagent
 ```
 
-Then run the install command below in that session. This is a [Claude Code platform limitation](https://github.com/anthropics/claude-code/issues/14799).
+Then run the install command below in that session. This is a [CodeAgent platform limitation](https://github.com/anthropics/claude-code/issues/14799).
 
 </details>
 
 ```
-/plugin install claude-hud
+/plugin install code-hud
 ```
 
 After that, reload plugins:
@@ -50,29 +50,29 @@ After that, reload plugins:
 
 **Step 3: Configure the statusline**
 ```
-/claude-hud:setup
+/code-hud:setup
 ```
 
 <details>
 <summary><strong>⚠️ Windows users: Click here if setup says no JavaScript runtime was found</strong></summary>
 
-On Windows, Node.js LTS is the supported runtime for Claude HUD setup. If setup says no JavaScript runtime was found, install Node.js for your shell first:
+On Windows, Node.js LTS is the supported runtime for Code HUD setup. If setup says no JavaScript runtime was found, install Node.js for your shell first:
 ```powershell
 winget install OpenJS.NodeJS.LTS
 ```
-Then restart your shell and run `/claude-hud:setup` again.
+Then restart your shell and run `/code-hud:setup` again.
 
 </details>
 
-Done! Restart Claude Code to load the new statusLine config, then the HUD will appear.
+Done! Restart CodeAgent to load the new statusLine config, then the HUD will appear.
 
-On Windows, make that a full Claude Code restart after setup writes the new `statusLine` config.
+On Windows, make that a full CodeAgent restart after setup writes the new `statusLine` config.
 
 ---
 
-## What is Claude HUD?
+## What is Code HUD?
 
-Claude HUD gives you better insights into what's happening in your Claude Code session.
+Code HUD gives you better insights into what's happening in your CodeAgent session.
 
 | What You See | Why It Matters |
 |--------------|----------------|
@@ -92,7 +92,7 @@ Context █████░░░░░ 45% │ Usage ██░░░░░░░
 - **Line 1** — Model, provider label when positively identified (for example `Bedrock`, `Vertex`), project path, git branch
 - **Line 2** — Context bar (green → yellow → red) and usage rate limits
 
-### Optional lines (enable via `/claude-hud:configure`)
+### Optional lines (enable via `/code-hud:configure`)
 ```
 ◐ Edit: auth.ts | ✓ Read ×3 | ✓ Grep ×2        ← Tools activity
 ◐ explore [haiku]: Finding auth code (2m 15s)    ← Agent status
@@ -103,16 +103,16 @@ Context █████░░░░░ 45% │ Usage ██░░░░░░░
 
 ## How It Works
 
-Claude HUD uses Claude Code's native **statusline API** — no separate window, no tmux required, works in any terminal.
+Code HUD uses CodeAgent's native **statusline API** — no separate window, no tmux required, works in any terminal.
 
 ```
-Claude Code → stdin JSON → claude-hud → stdout → displayed in your terminal
+CodeAgent → stdin JSON → claude-hud → stdout → displayed in your terminal
            ↘ transcript JSONL (tools, agents, todos)
 ```
 
 **Key features:**
-- Native token data from Claude Code (not estimated)
-- Scales with Claude Code's reported context window size, including newer 1M-context sessions
+- Native token data from CodeAgent (not estimated)
+- Scales with CodeAgent's reported context window size, including newer 1M-context sessions
 - Parses the transcript for tool/agent activity
 - Updates every ~300ms
 
@@ -123,7 +123,7 @@ Claude Code → stdin JSON → claude-hud → stdout → displayed in your termi
 Customize your HUD anytime:
 
 ```
-/claude-hud:configure
+/code-hud:configure
 ```
 
 The guided flow handles layout, language, and common display toggles. Advanced overrides such as
@@ -145,12 +145,12 @@ After choosing a preset, you can turn individual elements on or off.
 
 ### Manual Configuration
 
-Edit `~/.claude/plugins/claude-hud/config.json` directly for advanced settings such as `colors.*`,
-`pathLevels`, `maxWidth`, threshold overrides, `display.timeFormat`, and `display.promptCacheTtlSeconds`. Running `/claude-hud:configure`
+Edit `~/.cac/plugins/code-hud/config.json` directly for advanced settings such as `colors.*`,
+`pathLevels`, `maxWidth`, threshold overrides, `display.timeFormat`, and `display.promptCacheTtlSeconds`. Running `/code-hud:configure`
 preserves those manual settings while still letting you change `language`, layout, and the common
 guided toggles.
 
-Chinese HUD labels are available as an explicit opt-in. English stays the default unless you choose `中文` in `/claude-hud:configure` or set `language` in config. The short `zh` alias remains valid, and new guided config writes the canonical `zh-Hans` value.
+Chinese HUD labels are available as an explicit opt-in. English stays the default unless you choose `中文` in `/code-hud:configure` or set `language` in config. The short `zh` alias remains valid, and new guided config writes the canonical `zh-Hans` value.
 
 ### Options
 
@@ -176,8 +176,8 @@ Chinese HUD labels are available as an explicit opt-in. English stays the defaul
 | `display.showContextBar` | boolean | true | Show visual context bar `████░░░░░░` |
 | `display.contextValue` | `percent` \| `tokens` \| `remaining` \| `both` | `percent` | Context display format (`45%`, `45k/200k`, `55%` remaining, or `45% (45k/200k)`) |
 | `display.showConfigCounts` | boolean | false | Show CLAUDE.md, rules, MCPs, hooks counts |
-| `display.showCost` | boolean | false | Show session cost using Claude Code's native `cost.total_cost_usd` when available, with a local estimate fallback for direct Anthropic sessions |
-| `display.showOutputStyle` | boolean | false | Show the active Claude Code `outputStyle` from settings files as `style: <name>` |
+| `display.showCost` | boolean | false | Show session cost using CodeAgent's native `cost.total_cost_usd` when available, with a local estimate fallback for direct Anthropic sessions |
+| `display.showOutputStyle` | boolean | false | Show the active CodeAgent `outputStyle` from settings files as `style: <name>` |
 | `display.showDuration` | boolean | false | Show session duration `⏱️ 5m` |
 | `display.showSpeed` | boolean | false | Show output token speed `out: 42.1 tok/s` |
 | `display.showUsage` | boolean | true | Show Claude subscriber usage limits when available |
@@ -188,7 +188,7 @@ Chinese HUD labels are available as an explicit opt-in. English stays the defaul
 | `display.timeFormat` | `relative` \| `absolute` \| `both` \| `elapsed` \| `elapsedAndAbsolute` | `relative` | How usage-window time is shown: countdown only (`resets in 2h 30m`), wall-clock reset (`resets at 14:30`), both, elapsed window percentage (`53% elapsed`), or elapsed plus wall-clock reset |
 | `display.sevenDayThreshold` | 0-100 | 80 | Show 7-day usage when >= threshold (0 = always) |
 | `display.externalUsagePath` | string | `""` | Optional path to a local usage snapshot file used only when stdin `rate_limits` are missing |
-| `display.externalUsageWritePath` | string | `""` | Optional absolute `.json` path in an existing directory. When stdin `rate_limits` exists, ClaudeHUD writes a private snapshot for other local tools. Relative paths, non-json files, and missing parent directories are ignored |
+| `display.externalUsageWritePath` | string | `""` | Optional absolute `.json` path in an existing directory. When stdin `rate_limits` exists, CodeHUD writes a private snapshot for other local tools. Relative paths, non-json files, and missing parent directories are ignored |
 | `display.externalUsageFreshnessMs` | number | `300000` | Maximum allowed age for the external usage snapshot before it is ignored |
 | `display.showTokenBreakdown` | boolean | true | Show token details at high context (85%+) |
 | `display.showTools` | boolean | false | Show tools activity line |
@@ -199,7 +199,7 @@ Chinese HUD labels are available as an explicit opt-in. English stays the defaul
 | `display.showSessionName` | boolean | false | Show session slug or custom title from `/rename` |
 | `display.showSessionStartDate` | boolean | false | Show the transcript session start timestamp |
 | `display.showLastResponseAt` | boolean | false | Show how long ago the last assistant response was written |
-| `display.showClaudeCodeVersion` | boolean | false | Show the installed Claude Code version, e.g. `CC v2.1.81` |
+| `display.showClaudeCodeVersion` | boolean | false | Show the installed CodeAgent version, e.g. `CC v2.1.81` |
 | `display.showMemoryUsage` | boolean | false | Show an approximate system RAM usage line in expanded layout |
 | `display.showPromptCache` | boolean | false | Show a prompt cache countdown based on the last assistant response timestamp in the transcript |
 | `display.promptCacheTtlSeconds` | number | `300` | Prompt cache TTL in seconds. Keep the default for Pro, set `3600` for Max |
@@ -221,23 +221,23 @@ Chinese HUD labels are available as an explicit opt-in. English stays the defaul
 
 Supported color names: `dim`, `red`, `green`, `yellow`, `magenta`, `cyan`, `brightBlue`, `brightMagenta`. You can also use a 256-color number (`0-255`) or hex (`#rrggbb`).
 
-`display.showMemoryUsage` is fully opt-in and only renders in `expanded` layout. It reports approximate system RAM usage from the local machine, not precise memory pressure inside Claude Code or a specific process. The number may overstate actual pressure because reclaimable OS cache and buffers can still be counted as used memory.
+`display.showMemoryUsage` is fully opt-in and only renders in `expanded` layout. It reports approximate system RAM usage from the local machine, not precise memory pressure inside CodeAgent or a specific process. The number may overstate actual pressure because reclaimable OS cache and buffers can still be counted as used memory.
 
-`display.showCost` is fully opt-in. ClaudeHUD prefers the native `cost.total_cost_usd` field that Claude Code provides on stdin when it is available. If that field is absent or invalid for a direct Anthropic session, ClaudeHUD falls back to the existing local transcript-based estimate so the cost line still works on older payloads. The native field is absent before the first API response in a session, so the cost display may stay hidden until then. ClaudeHUD also keeps the cost hidden for known routed providers such as Bedrock and Vertex AI, because cloud-provider billed sessions may report `$0.00` or omit the field even though the session was not literally free.
+`display.showCost` is fully opt-in. CodeHUD prefers the native `cost.total_cost_usd` field that CodeAgent provides on stdin when it is available. If that field is absent or invalid for a direct Anthropic session, CodeHUD falls back to the existing local transcript-based estimate so the cost line still works on older payloads. The native field is absent before the first API response in a session, so the cost display may stay hidden until then. CodeHUD also keeps the cost hidden for known routed providers such as Bedrock and Vertex AI, because cloud-provider billed sessions may report `$0.00` or omit the field even though the session was not literally free.
 
-`display.showPromptCache` is fully opt-in. When enabled, ClaudeHUD looks at the timestamp of the last assistant response in the local transcript and shows a live countdown until the prompt cache expires. The default TTL is 5 minutes (`300` seconds). Set `display.promptCacheTtlSeconds` to `3600` if you want a 1-hour Max-style window. If the transcript does not have an assistant timestamp yet, the cache element stays hidden.
+`display.showPromptCache` is fully opt-in. When enabled, CodeHUD looks at the timestamp of the last assistant response in the local transcript and shows a live countdown until the prompt cache expires. The default TTL is 5 minutes (`300` seconds). Set `display.promptCacheTtlSeconds` to `3600` if you want a 1-hour Max-style window. If the transcript does not have an assistant timestamp yet, the cache element stays hidden.
 
 ### Usage Limits
 
-Usage display is **enabled by default** when Claude Code provides subscriber `rate_limits` data on stdin. It shows your rate limit consumption on line 2 alongside the context bar.
+Usage display is **enabled by default** when CodeAgent provides subscriber `rate_limits` data on stdin. It shows your rate limit consumption on line 2 alongside the context bar.
 
 Set `display.usageValue` to `remaining` to show quota left instead of quota used. Warning colors and 7-day threshold checks still use the underlying used percentage.
 
-ClaudeHUD prefers the official statusline stdin payload. If `rate_limits` are missing, you can opt into a local sidecar fallback by setting `display.externalUsagePath` to a JSON snapshot written by another tool such as a proxy. Stdin still wins whenever both sources exist.
+CodeHUD prefers the official statusline stdin payload. If `rate_limits` are missing, you can opt into a local sidecar fallback by setting `display.externalUsagePath` to a JSON snapshot written by another tool such as a proxy. Stdin still wins whenever both sources exist.
 
 The fallback snapshot must be fresh enough (`display.externalUsageFreshnessMs`) and include valid `updated_at`, plus a `five_hour` window, `seven_day` window, or `balance_label`. `balance_label` is optional text for prepaid provider balances; it is trimmed, length-limited, and sanitized before display. Invalid JSON, stale files, or invalid timestamps are ignored quietly.
 
-Set `display.externalUsageWritePath` if you want ClaudeHUD to write the official stdin `rate_limits` into a local snapshot for other tools. The path must be absolute, end in `.json`, and live in an existing directory. ClaudeHUD writes the file with private permissions and ignores invalid paths quietly.
+Set `display.externalUsageWritePath` if you want CodeHUD to write the official stdin `rate_limits` into a local snapshot for other tools. The path must be absolute, end in `.json`, and live in an existing directory. CodeHUD writes the file with private permissions and ignores invalid paths quietly.
 
 Free/weekly-only accounts render the weekly window by itself instead of showing a ghost `5h: --` placeholder.
 
@@ -252,14 +252,14 @@ To disable, set `display.showUsage` to `false`.
 Reset times use relative countdowns by default. Set `display.timeFormat` to `absolute` for wall-clock
 times, `both` to show both forms, `elapsed` to show how far through each usage window you are, or
 `elapsedAndAbsolute` to show elapsed window progress plus the wall-clock reset time. This setting is
-manual-only today; `/claude-hud:configure` preserves it without editing it.
+manual-only today; `/code-hud:configure` preserves it without editing it.
 
 Set `display.showResetLabel` to `false` if you want shorter usage countdowns such as `(3h 17m)` instead of `(resets in 3h 17m)`.
 
 Set `display.usageCompact` to `true` if you want the shorter usage-only form, for example `5h: 25% (1h 30m)`. Compact usage takes precedence over `display.usageBarEnabled`.
 
 **Requirements:**
-- Claude Code must include subscriber `rate_limits` data on stdin for the current session
+- CodeAgent must include subscriber `rate_limits` data on stdin for the current session
 - Not available for API-key-only users
 
 **Troubleshooting:** If usage doesn't appear:
@@ -268,10 +268,10 @@ Set `display.usageCompact` to `true` if you want the shorter usage-only form, fo
 - API users see no usage display (they have pay-per-token, not rate limits)
 - AWS Bedrock models display `Bedrock` and hide usage limits (usage is managed in AWS)
 - Google Vertex AI models display `Vertex` and hide cost estimates (pricing differs from Anthropic direct)
-- Claude Code may leave `rate_limits` empty until after the first model response in a session
-- Some Claude Code builds and subscription tiers may still omit `rate_limits`, even after the first response
-- If you configured `display.externalUsagePath`, ClaudeHUD will try that local snapshot before hiding usage
-- ClaudeHUD never falls back to credential scraping or undocumented API calls
+- CodeAgent may leave `rate_limits` empty until after the first model response in a session
+- Some CodeAgent builds and subscription tiers may still omit `rate_limits`, even after the first response
+- If you configured `display.externalUsagePath`, CodeHUD will try that local snapshot before hiding usage
+- CodeHUD never falls back to credential scraping or undocumented API calls
 
 Example fallback snapshot:
 
@@ -348,7 +348,7 @@ Example fallback snapshot:
 **Config not applying?**
 - Check for JSON syntax errors: invalid JSON silently falls back to defaults
 - Ensure valid values: `pathLevels` must be 1, 2, or 3; `lineLayout` must be `expanded` or `compact`; `maxWidth` must be a positive number
-- Delete config and run `/claude-hud:configure` to regenerate
+- Delete config and run `/code-hud:configure` to regenerate
 
 **Git status missing?**
 - Verify you're in a git repository
@@ -359,14 +359,14 @@ Example fallback snapshot:
 - They also only appear when there's activity to show
 
 **HUD not appearing after setup?**
-- Restart Claude Code so it picks up the new statusLine config
-- On macOS, fully quit Claude Code and run `claude` again in your terminal
+- Restart CodeAgent so it picks up the new statusLine config
+- On macOS, fully quit CodeAgent and run `claude` again in your terminal
 
 ---
 
 ## Requirements
 
-- Claude Code v1.0.80+
+- CodeAgent v1.0.80+
 - macOS/Linux: Node.js 18+ or Bun
 - Windows: Node.js 18+
 
@@ -375,7 +375,7 @@ Example fallback snapshot:
 ## Development
 
 ```bash
-git clone https://github.com/jarrodwatts/claude-hud
+git clone https://github.com/Ricardo-cai531/claude-hud
 cd claude-hud
 npm ci && npm run build
 npm test
@@ -393,4 +393,4 @@ MIT — see [LICENSE](LICENSE)
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=jarrodwatts/claude-hud&type=Date)](https://star-history.com/#jarrodwatts/claude-hud&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Ricardo-cai531/claude-hud&type=Date)](https://star-history.com/#Ricardo-cai531/claude-hud&Date)

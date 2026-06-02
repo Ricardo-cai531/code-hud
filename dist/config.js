@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as os from 'node:os';
-import { getHudPluginDir } from './claude-config-dir.js';
+import { getHudPluginDir } from './cac-config-dir.js';
 export const DEFAULT_ELEMENT_ORDER = [
     'project',
     'addedDirs',

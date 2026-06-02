@@ -1,0 +1,329 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1780372763081,
+  "projectRoot": "D:\\project\\claude-hud",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": ">=18.0.0",
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [],
+    "packageManager": "npm",
+    "runtime": "Node.js 18.0.0"
+  },
+  "build": {
+    "buildCommand": "npm run build 2>&1",
+    "testCommand": "npm test",
+    "lintCommand": null,
+    "devCommand": "npm run dev",
+    "scripts": {
+      "build": "tsc",
+      "dev": "tsc --watch",
+      "test": "npm run build && node --test",
+      "test:coverage": "npm run build && c8 --reporter=text --reporter=lcov node --test",
+      "test:update-snapshots": "UPDATE_SNAPSHOTS=1 npm test",
+      "test:stdin": "npm run build && echo '{\"model\":{\"display_name\":\"Opus\"},\"context_window\":{\"current_usage\":{\"input_tokens\":45000},\"context_window_size\":200000},\"transcript_path\":\"/tmp/test.jsonl\"}' | node dist/index.js"
+    }
+  },
+  "conventions": {
+    "namingStyle": "camelCase",
+    "importStyle": "ES modules",
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "src",
+      "tests"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "commands": {
+      "path": "commands",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1780372763037,
+      "keyFiles": [
+        "configure.md",
+        "setup.md"
+      ]
+    },
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 76,
+      "lastAccessed": 1780372763038,
+      "keyFiles": [
+        "claude-config-dir.d.ts",
+        "claude-config-dir.d.ts.map",
+        "claude-config-dir.js",
+        "claude-config-dir.js.map",
+        "config-reader.d.ts"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 18,
+      "lastAccessed": 1780372763051,
+      "keyFiles": [
+        "claude-config-dir.ts",
+        "config-reader.ts",
+        "config.ts",
+        "constants.ts",
+        "context-cache.ts"
+      ]
+    },
+    "tests": {
+      "path": "tests",
+      "purpose": "Test files",
+      "fileCount": 21,
+      "lastAccessed": 1780372763052,
+      "keyFiles": [
+        "config.test.js",
+        "context-cache.test.js",
+        "core.test.js",
+        "effort.test.js",
+        "external-usage.test.js"
+      ]
+    },
+    "tests\\fixtures": {
+      "path": "tests\\fixtures",
+      "purpose": "Test fixtures",
+      "fileCount": 2,
+      "lastAccessed": 1780372763054,
+      "keyFiles": [
+        "transcript-basic.jsonl",
+        "transcript-render.jsonl"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "README.zh.md",
+      "accessCount": 14,
+      "lastAccessed": 1780385296566,
+      "type": "file"
+    },
+    {
+      "path": "README.md",
+      "accessCount": 12,
+      "lastAccessed": 1780385168298,
+      "type": "file"
+    },
+    {
+      "path": "commands\\setup.md",
+      "accessCount": 8,
+      "lastAccessed": 1780384598825,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 8,
+      "lastAccessed": 1780384693252,
+      "type": "directory"
+    },
+    {
+      "path": "src\\config-reader.ts",
+      "accessCount": 7,
+      "lastAccessed": 1780384559387,
+      "type": "file"
+    },
+    {
+      "path": "commands\\configure.md",
+      "accessCount": 6,
+      "lastAccessed": 1780384626343,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 6,
+      "lastAccessed": 1780384657155,
+      "type": "file"
+    },
+    {
+      "path": ".claude-plugin\\plugin.json",
+      "accessCount": 5,
+      "lastAccessed": 1780384292687,
+      "type": "file"
+    },
+    {
+      "path": "src\\config.ts",
+      "accessCount": 5,
+      "lastAccessed": 1780384496875,
+      "type": "file"
+    },
+    {
+      "path": "src\\index.ts",
+      "accessCount": 4,
+      "lastAccessed": 1780384151676,
+      "type": "file"
+    },
+    {
+      "path": "src\\types.ts",
+      "accessCount": 4,
+      "lastAccessed": 1780384160538,
+      "type": "file"
+    },
+    {
+      "path": "src\\render\\index.ts",
+      "accessCount": 4,
+      "lastAccessed": 1780384160709,
+      "type": "file"
+    },
+    {
+      "path": "src\\claude-config-dir.ts",
+      "accessCount": 4,
+      "lastAccessed": 1780384292353,
+      "type": "file"
+    },
+    {
+      "path": "src\\transcript.ts",
+      "accessCount": 4,
+      "lastAccessed": 1780384538638,
+      "type": "file"
+    },
+    {
+      "path": "src",
+      "accessCount": 4,
+      "lastAccessed": 1780385178551,
+      "type": "directory"
+    },
+    {
+      "path": "src\\render\\session-line.ts",
+      "accessCount": 3,
+      "lastAccessed": 1780384015505,
+      "type": "file"
+    },
+    {
+      "path": "src\\stdin.ts",
+      "accessCount": 3,
+      "lastAccessed": 1780384151793,
+      "type": "file"
+    },
+    {
+      "path": "tsconfig.json",
+      "accessCount": 3,
+      "lastAccessed": 1780384160875,
+      "type": "file"
+    },
+    {
+      "path": "CLAUDE.md",
+      "accessCount": 2,
+      "lastAccessed": 1780383988302,
+      "type": "file"
+    },
+    {
+      "path": "INTEGRATION_PLAN.md",
+      "accessCount": 2,
+      "lastAccessed": 1780384180940,
+      "type": "file"
+    },
+    {
+      "path": "src\\context-cache.ts",
+      "accessCount": 2,
+      "lastAccessed": 1780384536056,
+      "type": "file"
+    },
+    {
+      "path": "src\\speed-tracker.ts",
+      "accessCount": 2,
+      "lastAccessed": 1780384540416,
+      "type": "file"
+    },
+    {
+      "path": "src\\version.ts",
+      "accessCount": 2,
+      "lastAccessed": 1780384542127,
+      "type": "file"
+    },
+    {
+      "path": "CODEAGENT.md",
+      "accessCount": 2,
+      "lastAccessed": 1780384723949,
+      "type": "file"
+    },
+    {
+      "path": "src\\render\\tools-line.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780372892067,
+      "type": "file"
+    },
+    {
+      "path": "src\\render\\agents-line.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780372892287,
+      "type": "file"
+    },
+    {
+      "path": "src\\render\\colors.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780372898889,
+      "type": "file"
+    },
+    {
+      "path": "src\\git.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780372899835,
+      "type": "file"
+    },
+    {
+      "path": ".claude-plugin\\marketplace.json",
+      "accessCount": 1,
+      "lastAccessed": 1780384007063,
+      "type": "file"
+    },
+    {
+      "path": "src\\constants.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780384152131,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\CXB\\.claude\\plans\\robust-stargazing-pie.md",
+      "accessCount": 1,
+      "lastAccessed": 1780384361532,
+      "type": "file"
+    },
+    {
+      "path": ".cac-plugin\\plugin.json",
+      "accessCount": 1,
+      "lastAccessed": 1780384423521,
+      "type": "file"
+    },
+    {
+      "path": ".cac-plugin\\marketplace.json",
+      "accessCount": 1,
+      "lastAccessed": 1780384439632,
+      "type": "file"
+    },
+    {
+      "path": "src\\cac-config-dir.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780384463478,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

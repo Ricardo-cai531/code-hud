@@ -2,7 +2,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as os from 'node:os';
 import { createHash } from 'node:crypto';
-import { getHudPluginDir } from './claude-config-dir.js';
+import { getHudPluginDir } from './cac-config-dir.js';
 const SPEED_WINDOW_MS = 2000;
 // Status lines can re-render many times per second while tokens stream.
 // Computing a rate from sub-500ms windows amplifies noise and produces
